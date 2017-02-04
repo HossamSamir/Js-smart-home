@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+var five = require("johnny-five");
+var board = new five.Board();
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -81,12 +83,16 @@ function receivedMessage(event) {
         sendGenericMessage(senderID);
         break;
 
-      // case 'blink led':
-      //   ArduinoTest(senderID);
-      //   break;
+      case 'انت ياعم الروبوت 😂':
+        yacta(senderID);
+        break;
 
-      case 'light off!':
-        testgreeting(senderID, messageText);
+      case 'طفي النور':
+        turnOffLight(senderID);
+        break;
+
+      case 'شغل النور':
+        turnOnLight(senderID);
         break;
 
       default:
@@ -159,49 +165,43 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData);
 }
 
-function ArduinoTest() {
-  board.on('ready', function() {
-    var led = new five.Led(2); // pin 13
-    led.blink(500); // 500ms interval
-  });
-}
-
-function testgreeting(recipientId, messageText) {
+function turnOffLight(recipientId) {
+  var led = new five.Led(13);
+  led.off();
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "which room Hossam?",
-          buttons: [
-            {
-              type: "web_url",
-              url: 'https://www.google.com',
-              title: 'room 1'
-            },
-
-            {
-              type: "web_url",
-              url: 'https://www.google.com',
-              title: 'room 2'
-            },
-
-            {
-              type: "web_url",
-              url: 'https://www.google.com',
-              title: 'room 3'
-            },
-
-          ]
-        }
-      }
+      text: 'طفيته احبيب قلبي ;)'
     }
   };
+  callSendAPI(messageData);
+}
 
+function turnOnLight(recipientId) {
+  var led = new five.Led(13);
+  led.on();
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: 'شغلته احبيب قلبي ;)'
+    }
+  };
+  callSendAPI(messageData);
+}
+
+function yacta(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: 'ايه احووووس 😂'
+    }
+  };
   callSendAPI(messageData);
 }
 
