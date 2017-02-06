@@ -15,8 +15,8 @@ app.get('/', function(req, res) {
 })
 
 
-const token = "<webhook>"
-const access = "<access_token>"
+const token = "kjsdggjk"
+const access = "EAAaQKZCZAmZCnoBALqPvdjzwWmKYv1wJ9LpzrvJ0SPdnmQvuZAohnaHVEGTekPZABolbmJZA0iETyUgLZCuUHxouwozzXRIp93Qsp0oUo9GNWH7MMtswF3zaBKMe0PQcD00ZAO8TeTrce3m7ivYc9Y9xKlZBZCAZABPpKeCmtAeO8x7ZAwZDZD"
 
 app.get('/webhook/', function(req, res) {
   if(req.query['hub.verify_token'] === token) {
