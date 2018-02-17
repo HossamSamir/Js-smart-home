@@ -53,6 +53,8 @@
   24.  smart fridge,
   
   25.  learning media programs for kids'
+  
+  26. Power consumption (Kill-a-watt meter) (display cost and kWh consumption). Other features: Warning when you exceed a defined limit (kWh or cost). Show percentage of kWh/cost usage of each device connected to the system. 
 
 
 <h3> Scenarios/modes </h3>
